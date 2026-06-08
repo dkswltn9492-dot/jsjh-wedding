@@ -147,7 +147,7 @@
     </section>
 	
 	<!-- ─── 오시는 길 ─── -->
-<section class="section location" id="location">
+	<section class="section location" id="location">
   <div class="section__inner">
     <h2 class="section__title animate-item" data-animate="fade-up">오시는 길</h2>
     <div class="location__card animate-item" data-animate="fade-up">
@@ -162,26 +162,28 @@
       주소 복사
     </button>
 
+    <!-- 지도가 출력되는 반응형 상자 -->
     <div class="location__map">
-  <!-- 1. 지도 노드 -->
-  <div id="daumRoughmapContainer1780890295226"
-       class="root_daum_roughmap root_daum_roughmap_landing"></div>
-  <!-- 2. 설치 스크립트: ⚠ 이 줄이 정확해야 함 -->
-  <script charset="UTF-8"
-          class="daum_roughmap_loader_script"
-          src="[ssl.daumcdn.net](https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js)"></script>
-  <!-- 3. 실행 스크립트 -->
-  <script charset="UTF-8">
-    window.addEventListener('load', function () {
-      new daum.roughmap.Lander({
-        "timestamp" : "1780890295226",
-        "key"       : "p6o5ab96wg3",
-        "mapWidth"  : "100%",
-        "mapHeight" : "320"
-      }).render();
-    });
-  </script>
-</div>
+      <!-- * 카카오맵 - 지도퍼가기 -->
+      <!-- 1. 지도 노드 -->
+      <div id="daumRoughmapContainer1780892433659"
+           class="root_daum_roughmap root_daum_roughmap_landing"></div>
+
+      <!-- 2. 설치 스크립트 (페이지 전체에 딱 한 번만) -->
+      <script charset="UTF-8"
+              class="daum_roughmap_loader_script"
+              src="[ssl.daumcdn.net](https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js)"></script>
+
+      <!-- 3. 실행 스크립트 -->
+      <script charset="UTF-8">
+        new daum.roughmap.Lander({
+          "timestamp" : "1780892433659",
+          "key"       : "p6png5mkh2b",
+          "mapWidth"  : "100%",  // 640 → 100% (부모 width 따라가게)
+          "mapHeight" : "360"
+        }).render();
+      </script>
+    </div>
 
     <div class="location__links animate-item" data-animate="fade-up">
       <a class="btn btn--kakao" id="kakaoMapBtn" href="#" target="_blank" rel="noopener">카카오맵</a>
@@ -189,8 +191,6 @@
     </div>
   </div>
 </section>
-
-
 
     <!-- ─── 마음 전하실 곳 (축의금) ─── -->
     <section class="section account" id="account">
