@@ -741,25 +741,6 @@ a {
   pointer-events: none !important;
 }
 
-/* 상단 점 장식 */
-.calendar-section::before {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-pink, #EC4A4A);
-  opacity: 0.3;
-  z-index: 2;
-  box-shadow:
-    40px 10px 0 var(--color-blue, #4dadf7),
-    80px 5px 0 var(--color-lavender, #e5dbff),
-    calc(100vw - 60px) 0 0 var(--color-mint, #63e6be),
-    calc(100vw - 100px) 12px 0 var(--color-pink, #EC4A4A);
-}
-
 /* ==========================================================================
    2. 콘텐츠 가로 폭 가두기 및 9:16 황금 비율 고정 상자
    ========================================================================== */
@@ -785,7 +766,7 @@ a {
   /* 내부 영역 분배를 위한 Flexbox 선언 */
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-between !important; /* 카운트다운(상) - 달력(중) - 버튼(하) 균등 배치 */
+  justify-content: flex-start !important; /* 카운트다운(상) - 달력(중) - 버튼(하) 균등 배치 */
   
   /* 스마트폰 화면 기준 정밀 패딩 */
   padding: 60px 24px 40px 24px !important; 
@@ -806,10 +787,9 @@ a {
   width: 100% !important;
   background: transparent !important; 
   box-shadow: none !important;
-  top: 20% !important; 
-  position: absolute !important;
   z-index: 10 !important;
-
+   margin-top: 20px !important;    /* 부모 패딩으로부터 떨어질 여백 */
+  margin-bottom: 40px !important; /* 밑에 있는 달력과의 여백 (얘를 키우면 달력이 내려감) */
 }
 
 .countdown__timer {
@@ -851,15 +831,10 @@ a {
   background: transparent !important; 
  padding: 0 !important; 
  box-shadow: none !important; 
+	margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
-@media (min-width: 768px) {
-  .countdown {
-    margin-bottom: 190px !important;
-  }
-  .calendar {
-	  margin-bottom: 100px !important;
-  }
-}
+
 /* 년.월 표시 헤더 */
 .calendar__header {
   font-family: 'Ink Free', 'Chalkboard SE', 'Casual', cursive !important;
