@@ -36,9 +36,9 @@
   --font-round: -apple-system, 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR', sans-serif;
 */
 
-  --font-serif: -apple-system, 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR', sans-serif;
-  --font-round: -apple-system, 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR', sans-serif;
-
+  --font-serif: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-round: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  
   
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
@@ -89,6 +89,9 @@ body {
   padding-left: var(--safe-left);
   padding-right: var(--safe-right);
   font-weight: 700 !important; /* 글씨 두께를 두껍게 해서 더 동글동글해 보이게 함 */
+   width: 100% !important;
+  max-width: 450px !important; /* 모바일 청첩장이 가장 예쁘게 나오는 가로폭 규격입니다 */
+  margin: 0 auto !important;   /* 가로폭이 고정된 상태에서 화면 정중앙에 청첩장을 위치시킵니다 */
 
 }
 
@@ -741,6 +744,25 @@ a {
   pointer-events: none !important;
 }
 
+/* 상단 점 장식 */
+.calendar-section::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-pink, #EC4A4A);
+  opacity: 0.3;
+  z-index: 2;
+  box-shadow:
+    40px 10px 0 var(--color-blue, #4dadf7),
+    80px 5px 0 var(--color-lavender, #e5dbff),
+    calc(100vw - 60px) 0 0 var(--color-mint, #63e6be),
+    calc(100vw - 100px) 12px 0 var(--color-pink, #EC4A4A);
+}
+
 /* ==========================================================================
    2. 콘텐츠 가로 폭 가두기 및 9:16 황금 비율 고정 상자
    ========================================================================== */
@@ -766,7 +788,7 @@ a {
   /* 내부 영역 분배를 위한 Flexbox 선언 */
   display: flex !important;
   flex-direction: column !important;
-  justify-content: flex-start !important; /* 카운트다운(상) - 달력(중) - 버튼(하) 균등 배치 */
+  justify-content: space-between !important; /* 카운트다운(상) - 달력(중) - 버튼(하) 균등 배치 */
   
   /* 스마트폰 화면 기준 정밀 패딩 */
   padding: 60px 24px 40px 24px !important; 
@@ -775,7 +797,7 @@ a {
 /* PC 전용 레이아웃 보정 (가로폭 768px 이상) */
 @media (min-width: 768px) {
   .calendar-section .section__inner {
-    padding-top: 80px !important; 
+    padding-top: 0px !important; 
     padding-bottom: 60px !important;
   }
 }
@@ -787,9 +809,9 @@ a {
   width: 100% !important;
   background: transparent !important; 
   box-shadow: none !important;
+  margin-bottom: 20px !important;
+  position: relative !important;
   z-index: 10 !important;
-   margin-top: 20px !important;    /* 부모 패딩으로부터 떨어질 여백 */
-  margin-bottom: 40px !important; /* 밑에 있는 달력과의 여백 (얘를 키우면 달력이 내려감) */
 }
 
 .countdown__timer {
@@ -829,12 +851,18 @@ a {
   max-width: 100% !important;    
   margin: 0 auto !important; 
   background: transparent !important; 
- padding: 0 !important; 
- box-shadow: none !important; 
-	margin-top: 0 !important;
-  margin-bottom: 0 !important;
+  padding: 0 !important;        
+  box-shadow: none !important; 
 }
-
+/* PC 전용 레이아웃 보정 (가로폭 768px 이상) */
+@media (min-width: 768px) {
+  .countdown {
+    margin-bottom: 190px !important;
+  }
+  .calendar {
+	  margin-bottom: 100px !important;
+  }
+}
 /* 년.월 표시 헤더 */
 .calendar__header {
   font-family: 'Ink Free', 'Chalkboard SE', 'Casual', cursive !important;
@@ -950,6 +978,7 @@ a {
   margin-top: 20px !important; 
   position: relative !important;
   z-index: 10 !important;
+  box-sizing: border-box !important;
 }
 .calendar-actions > button, 
 .calendar-actions > a {
@@ -1081,24 +1110,24 @@ a {
   max-width: 100% !important; 
   margin: 0 auto !important;
   
-  /* 💡 대신 내부 글자와 지도들이 PC 화면에서 너무 뚱뚱해지지 않도록 안쪽 여백(Padding) 구조로 모바일 폭에 가둡니다 */
-  padding: 40px calc((100% - 402px) / 2) !important; /* 전체 폭에서 450px 핏(실제 콘텐츠 영역 402px)을 유지하며 정중앙 정렬 */
+  /* 내부 글자와 지도들이 PC 화면에서 너무 뚱뚱해지지 않도록 안쪽 여백 구조 설정 */
+  padding: 40px calc((100% - 402px) / 2) !important; 
   box-sizing: border-box !important;
   text-align: center !important;
-  font-family: var(--font-serif)
-  
-}
+ }
 
 .section__title {
-	font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif !important;
-   font-size: 1.5rem !important;
+  /* [해결 2] 위의 세미콜론이 닫히면서 이 코드도 이제 정상 작동합니다 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif !important;
+  font-size: 1.5rem !important;
   font-weight: 600 !important;
   margin-bottom: 20px !important;
   color: #000000 !important;
 }
 
+
 .location__card {
-  background: var(--color-bg-card);
+  background: #fafafa;
   border-radius: var(--radius-lg);
   padding: var(--spacing-md) var(--spacing-md);
   margin-bottom: var(--spacing-md);
@@ -1107,60 +1136,40 @@ a {
 
 .location__venue {
   font-size: 1.0625rem;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 0.25rem;
   letter-spacing: 1px;
 }
 
 .location__hall {
   font-size: 0.875rem;
-  font-weight: 400;
-  color: var(--color-text-light);
+  font-weight: 700;
+  color: #333;
   margin-bottom: var(--spacing-xs);
 }
 
 .location__address {
   font-size: 0.8125rem;
-  font-weight: 400;
-  color: var(--color-text-muted);
+  font-weight: 700;
+  color: #333;
   line-height: 1.6;
 }
 
 .location__tel {
   font-size: 0.8125rem;
-  font-weight: 400;
-  color: var(--color-text-muted);
+  font-weight: 700;
+  color: #333;
   margin-top: 0.25rem;
-}
-
-.location__parking,
-.location__transport {
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif !important;
-  font-size: 0.82rem !important;
-  font-weight: 400 !important;
-  color: var(--color-text-light) !important;
-  line-height: 1.6 !important; /* 줄간격을 넓혀 가독성 향상 */
-  text-align: left !important; /* 긴 문장은 왼쪽 정렬이 훨씬 단정하게 읽힙니다 */
-  word-break: keep-all !important; /* 한글 단어 끊김 방지 */
-  margin: 0 !important;
-}
-
-.location__parking b,
-.location__transport b {
-  font-weight: 700 !important;
-  color: #000000 !important;
-  display: inline-block !important;
-  margin-bottom: 4px !important; /* 타이틀 바로 아랫줄 내용과의 미세 간격 */
-}
-
-.location__info-divider {
-  border-top: 1px dashed rgba(0, 0, 0, 0.08) !important; /* 가로 가로선 점선 효과 */
-  margin: 16px 0 !important; /* 위아래로 적당한 틈새 배치 */
-  width: 100% !important;
 }
 
 .location__copy {
   margin-bottom: var(--spacing-lg);
+  background-color: #333 !important; /* 러블리한 딸기우유 핑크 */
+  color: #FFAEC9 !important;            /* 하얀색 글자 */
+  border: none !important;              /* 테두리 없애기 */
+  padding: 8px 16px !important;         /* 버튼 안쪽 여백 */
+  border-radius: 20px !important;       /* 동글동글한 알약 모양 */
+  font-weight: 700;
 }
 
 .location__map {
@@ -1458,7 +1467,7 @@ a {
   padding: var(--spacing-lg) var(--spacing-md);
   padding-bottom: calc(var(--spacing-lg) + var(--safe-bottom));
   text-align: center;
-  background: FCBED3;
+  background: #1B191A ;
   border-top: 1px solid var(--color-border);
   position: relative;
 }
@@ -1478,8 +1487,8 @@ a {
 }
 
 .footer__text {
-  font-size: 0.75rem;
-  font-weight: 400;
+  font-size: 0.85rem;
+  font-weight: 700;
   color: var(--color-text-muted);
   letter-spacing: 2px;
 }
@@ -1713,14 +1722,31 @@ a {
 }
 
 /* 기존 인생네컷 CSS 구역을 싹 다 지우고 이것만 깔끔하게 새로 덮어씌우세요 */
-@media (min-width: 768px) {
-  body {
-    background: #000; /* 바깥 배경색 (원하면 다른 색으로 바꿔도 됨) */
-  }
-  .main-content {
-    max-width: 480px !important;
-    margin: 0 auto !important;
-    box-shadow: 0 0 60px rgba(255, 181, 194, 0.25) !important;
-    min-height: 100vh !important;
-  }
+
+#bgm-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 9999;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.85); /* 반투명 화이트 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.bgm-playing {
+  animation: spin 4s linear infinite;
 }
