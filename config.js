@@ -37,7 +37,7 @@ const CONFIG = {
   wedding: {
     date: "2026-08-29",
     time: "16:00",
-    venue: "더마레보 호텔",
+    venue: "🤍더마레보 호텔🤍",
     hall: "단독홀 15층",
     address: "경기도 수원시 영통구 봉영로 1591",
     tel: "031-202-3773"
@@ -69,7 +69,7 @@ const CONFIG = {
       { role: "아버지", name: "박봉규", bank: "국민은행", number: "801-210827-421" }
     ],
     bride: [
-      { role: "신부", name: "안지수", bank: "카카오뱅크", number: "000-000-000000" },
+      { role: "신부", name: "안지수", bank: "카카오뱅크", number: "3333-21-2689511" },
       { role: "아버지", name: "안오영", bank: "기업은행", number: "000-000-000000" },
       { role: "어머니", name: "김애경", bank: "농협은행", number: "000-000-000000" }
     ]
