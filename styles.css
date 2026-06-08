@@ -848,10 +848,11 @@ a {
   max-width: 100% !important;    
   margin: 0 auto !important; 
   background: transparent !important; 
-  padding: 0 !important;        
+  top: 50% !important;      
   box-shadow: none !important; 
+ position: absolute !important;
 }
-/* PC 전용 레이아웃 보정 (가로폭 768px 이상) */
+/* PC 전용 레이아웃 보정 (가로폭 768px 이상) 
 @media (min-width: 768px) {
   .countdown {
     margin-bottom: 190px !important;
@@ -859,7 +860,7 @@ a {
   .calendar {
 	  margin-bottom: 100px !important;
   }
-}
+}*/
 /* 년.월 표시 헤더 */
 .calendar__header {
   font-family: 'Ink Free', 'Chalkboard SE', 'Casual', cursive !important;
