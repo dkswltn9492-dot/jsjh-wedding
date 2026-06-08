@@ -163,27 +163,27 @@
     </button>
 
     <!-- 지도가 출력되는 반응형 상자 -->
-    <div class="location__map">
-      <!-- * 카카오맵 - 지도퍼가기 -->
-      <!-- 1. 지도 노드 -->
-      <div id="daumRoughmapContainer1780892433659"
-           class="root_daum_roughmap root_daum_roughmap_landing"></div>
+<div class="location__map">
+  <!-- * 카카오맵 - 지도퍼가기 -->
+  <!-- 1. 지도 노드 -->
+  <div id="daumRoughmapContainer1780892433659"
+       class="root_daum_roughmap root_daum_roughmap_landing"></div>
 
-      <!-- 2. 설치 스크립트 (페이지 전체에 딱 한 번만) -->
-      <script charset="UTF-8"
-              class="daum_roughmap_loader_script"
-              src="[ssl.daumcdn.net](https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js)"></script>
+  <!-- 2. 설치 스크립트 (보내주신 API 키를 주소창에 완벽히 삽입했습니다!) -->
+  <script charset="UTF-8"
+          class="daum_roughmap_loader_script"
+          src="https://kakao.com"></script>
 
-      <!-- 3. 실행 스크립트 -->
-      <script charset="UTF-8">
-        new daum.roughmap.Lander({
-          "timestamp" : "1780892433659",
-          "key"       : "p6png5mkh2b",
-          "mapWidth"  : "100%",  // 640 → 100% (부모 width 따라가게)
-          "mapHeight" : "360"
-        }).render();
-      </script>
-    </div>
+  <!-- 3. 실행 스크립트 -->
+  <script charset="UTF-8">
+    new daum.roughmap.Lander({
+      "timestamp" : "1780892433659",
+      "key"       : "p6png5mkh2b",
+      "mapWidth"  : "100%",  // 640 → 100% (부모 width 따라가게)
+      "mapHeight" : "360"
+    }).render();
+  </script>
+</div>
 
     <div class="location__links animate-item" data-animate="fade-up">
       <a class="btn btn--kakao" id="kakaoMapBtn" href="#" target="_blank" rel="noopener">카카오맵</a>
