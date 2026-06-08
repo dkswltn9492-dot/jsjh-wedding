@@ -785,7 +785,7 @@ a {
   /* 내부 영역 분배를 위한 Flexbox 선언 */
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-between !important; /* 카운트다운(상) - 달력(중) - 버튼(하) 균등 배치 */
+  justify-content: flex-start !important; /* 카운트다운(상) - 달력(중) - 버튼(하) 균등 배치 */
   
   /* 스마트폰 화면 기준 정밀 패딩 */
   padding: 60px 24px 40px 24px !important; 
@@ -806,9 +806,11 @@ a {
   width: 100% !important;
   background: transparent !important; 
   box-shadow: none !important;
-  top: 20% !important; 
-  position: absolute !important;
-  z-index: 10 !important;
+  margin-top: 60px !important; 
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
 }
 
 .countdown__timer {
@@ -846,13 +848,13 @@ a {
 .calendar {
   width: 100% !important;       
   max-width: 100% !important;    
-  margin: 0 auto !important; 
-  background: transparent !important; 
-  top: 50% !important;      
-  box-shadow: none !important; 
- position: absolute !important;
+  background: transparent !important;     
+  box-shadow: none !important;
+  margin-top: 30px !important; 
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
-/* PC 전용 레이아웃 보정 (가로폭 768px 이상) 
 @media (min-width: 768px) {
   .countdown {
     margin-bottom: 190px !important;
@@ -860,7 +862,7 @@ a {
   .calendar {
 	  margin-bottom: 100px !important;
   }
-}*/
+}
 /* 년.월 표시 헤더 */
 .calendar__header {
   font-family: 'Ink Free', 'Chalkboard SE', 'Casual', cursive !important;
@@ -974,8 +976,10 @@ a {
   
   width: 100% !important;
   margin-top: 20px !important; 
-  position: relative !important;
-  z-index: 10 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0 !important;
   box-sizing: border-box !important;
 }
 .calendar-actions > button, 
