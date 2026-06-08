@@ -720,6 +720,32 @@
 
     mutObs.observe(document.body, { childList: true, subtree: true });
   }
+  /* ═══════════════════════════════════════════
+     배경음악
+     ═══════════════════════════════════════════ */
+  const bgm = document.getElementById('bgm');
+const bgmBtn = document.getElementById('bgm-btn');
+
+// 버튼을 누를 때마다 실행되는 함수
+bgmBtn.addEventListener('click', function() {
+  
+  // 만약 음악이 멈춰있는 상태라면? -> 재생하기
+  if (bgm.paused) {
+    bgm.play();
+    bgmBtn.textContent = "⏸️"; // 버튼 글자 바꾸기
+  } 
+  
+  // 만약 음악이 재생 중인 상태라면? -> 멈추기!
+  else {
+    bgm.pause(); // 멈추는 명령어입니다!
+    bgmBtn.textContent = "🎵"; // 버튼 글자 바꾸기
+  }
+
+});
+
+
+  
+
 
   /* ═══════════════════════════════════════════
      초기화
@@ -761,6 +787,8 @@
   } else {
     init();
   }
+
+  
 })(); // ⚠️ 이 괄호 다음에는 절대로 코드를 추가하시면 안 됩니다!
 
 
