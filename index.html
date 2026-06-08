@@ -164,26 +164,22 @@
 
     <!-- 지도가 출력되는 반응형 상자 -->
     <div class="location__map">
-      
-      <!-- 1. 지도 노드 -->
-      <div id="daumRoughmapContainer1780831913925" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%"></div>
-
-      <!-- 2. 설치 스크립트 (https 프로토콜 명시 상태 유지) -->
-      <script charset="UTF-8" src="https://daumcdn.net"></script>
-
-      <!-- 3. 실행 스크립트 -->
-      <!-- 💡 [진짜 최종 해결책] 화면 로딩이 완벽히 끝난 직후(onload) 지도를 강제 호출하도록 순서를 제어합니다 -->
-      <script charset="UTF-8">
-        window.addEventListener('load', function() {
-          new daum.roughmap.Lander({
-            "timestamp" : "1780831913925",
-            "key" : "p5emfp6mvm6",
-            "mapHeight" : "320"
-          }).render();
-        });
-      </script>
-
-    </div>
+  <div id="daumRoughmapContainer1780890295226"
+       class="root_daum_roughmap root_daum_roughmap_landing"></div>
+  <!-- 페이지 전체에 이 줄은 딱 1번만 -->
+  <script charset="UTF-8" class="daum_roughmap_loader_script"
+          src="[ssl.daumcdn.net](https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js)"></script>
+  <script charset="UTF-8">
+    window.addEventListener('load', function () {
+      new daum.roughmap.Lander({
+        "timestamp" : "1780890295226",
+        "key"       : "p6o5ab96wg3",
+        "mapWidth"  : "100%",
+        "mapHeight" : "320"
+      }).render();
+    });
+  </script>
+</div>
 
     <div class="location__links animate-item" data-animate="fade-up">
       <a class="btn btn--kakao" id="kakaoMapBtn" href="#" target="_blank" rel="noopener">카카오맵</a>
