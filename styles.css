@@ -1739,4 +1739,14 @@ a {
 }
 
 /* 기존 인생네컷 CSS 구역을 싹 다 지우고 이것만 깔끔하게 새로 덮어씌우세요 */
-
+@media (min-width: 768px) {
+  body {
+    background: #000; /* 바깥 배경색 (원하면 다른 색으로 바꿔도 됨) */
+  }
+  .main-content {
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    box-shadow: 0 0 60px rgba(255, 181, 194, 0.25) !important;
+    min-height: 100vh !important;
+  }
+}
