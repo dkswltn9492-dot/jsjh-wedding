@@ -329,5 +329,44 @@
 
 <!-- 자바스크립트 파일 연결 -->
 <script src="./script.js"></script>
+
+	<!-- 2. 카카오톡 공유용 스크립트 태그를 따로 만듭니다 -->
+<script>
+    // 카카오 SDK 초기화
+    if (typeof Kakao !== 'undefined') {
+        if (!Kakao.isInitialized()) {
+            Kakao.init('e2e652054178b417950b0402f65ebdca');
+        }
+    }
+
+    // 버튼 클릭 시 카카오톡 공유 실행
+    const kakaoBtn = document.getElementById('kakao-share-btn');
+    if (kakaoBtn) {
+        kakaoBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+	Kakao.Share.sendDefault({
+                objectType: 'feed',
+                content: {
+                    title: '저희 결혼합니다 💖',
+                    description: '축복의 자리에 오셔서 자리를 빛내주세요.',
+                    imageUrl: 'https://placeholder.com', 
+                    link: {
+                        mobileWebUrl: window.location.href, 
+                        webUrl: window.location.href,
+                    },
+                },
+                buttons: [
+                    {
+                        title: '모바일 청첩장 보기',
+                        link: {
+                            mobileWebUrl: window.location.href,
+                            webUrl: window.location.href,
+                        },
+                    },
+                ],
+            });
+        });
+    }
+</script>
 </body>
 </html>
