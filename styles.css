@@ -1706,6 +1706,27 @@ a {
   ) !important;
 }
 
+.image-fade-horizontal {
+  width: 100% !important;
+  height: 100% !important; /* 💡 부모 상자(이미지 크기)에 맞게 꽉 채움 */
+  position: absolute !important; /* 이미지 위에 겹치도록 절대 위치 설정 */
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 5 !important;
+  pointer-events: none !important; /* 터치 및 마우스 드래그 방해 금지 */
+  
+  /* 현재 배경색인 #E288A9를 활용하여 양옆으로 부드럽게 투명해지는 안개 효과 */
+  background: linear-gradient(
+    to right,
+    rgba(226, 136, 169, 1) 0%,       /* 왼쪽 끝은 완전 원래 배경색 */
+    rgba(226, 136, 169, 0.5) 20%,    /* 안쪽으로 오면서 투명해짐 */
+    rgba(226, 136, 169, 0) 40%,      /* 정중앙 왼쪽은 완전 투명 (사진 노출) */
+    rgba(226, 136, 169, 0) 60%,      /* 정중앙 오른쪽도 완전 투명 (사진 노출) */
+    rgba(226, 136, 169, 0.5) 80%,    /* 다시 오른쪽으로 가면서 흐려짐 */
+    rgba(226, 136, 169, 1) 100%      /* 오른쪽 끝은 완전 원래 배경색 */
+  ) !important;
+}
+
 .image-fade-black {
   width: 100% !important;
   height: 120px !important;       /* 그라데이션이 번지는 상하 폭 */
