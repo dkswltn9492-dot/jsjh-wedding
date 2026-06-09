@@ -122,14 +122,6 @@
   function setMetaTags() {
     const m = CONFIG.meta;
     document.title = m.title;
-    const setMeta = (attr, val, content) => {
-      const el = document.querySelector(`meta[${attr}="${val}"]`);
-      if (el) el.setAttribute('content', content);
-    };
-    setMeta('property', 'og:title', m.title);
-    setMeta('property', 'og:description', m.description);
-    setMeta('property', 'og:image', 'images/og/1.jpg');
-    setMeta('name', 'description', m.description);
   }
 
   /* ═══════════════════════════════════════════
