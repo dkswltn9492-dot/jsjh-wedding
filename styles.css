@@ -791,7 +791,7 @@ a {
   justify-content: space-between !important; /* 카운트다운(상) - 달력(중) - 버튼(하) 균등 배치 */
   
   /* 스마트폰 화면 기준 정밀 패딩 */
-  padding: 20px 24px 40px 24px !important; 
+  padding: 0px 40px 60px 60px !important; 
 }
 
 /* PC 전용 레이아웃 보정 (가로폭 768px 이상) */
