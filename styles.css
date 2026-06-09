@@ -1708,21 +1708,20 @@ a {
 
 .image-fade-horizontal {
    width: 100% !important;
-  height: 120px !important;       /* 💡 버무려지는 상하 범위 (더 넓게 퍼지게 하려면 숫자를 키우세요) */
-  margin-top: -60px !important;   /* 1번 사진 밑부분에 절반 겹치게 강제로 위로 올림 */
-  margin-bottom: -60px !important;/* 2번 사진 윗부분에 절반 겹치게 강제로 아래로 내림 */
-  position: relative !important;   /* 순서대로 쌓이는 흐름을 방해하지 않음 */
-  z-index: 5 !important;          /* 두 사진보다 무조건 위로 올라타게 설정 */
-  pointer-events: none !important;/* 터치나 스크롤 방해 금지 */
+  height: 100px !important;       /* 버무려지는 안개 상하 두께 */
+  margin-top: -100px !important;  /* [수정] 박스 전체를 1번 사진 아래쪽에 완벽히 오버랩 */
+  margin-bottom: 0px !important;  /* [수정] 아래쪽 밀어 올리던 마이너스 마진 제거 (사이드 번짐 차단) */
+  position: relative !important;   
+  z-index: 5 !important;          
+  pointer-events: none !important;
   
-  /* 위아래는 투명하고, 정중앙만 핑크색인 샌드위치 그라데이션 */
+  /* [수정] 1번 사진 끝에서부터 2번 사진 시작점까지 아래로 자연스럽게 스며드는 그라데이션 */
   background: linear-gradient(
     to bottom,
-    rgba(226, 136, 169, 0) 0%,       /* 맨 위 (1번 사진 쪽) 완전 투명 */
-    rgba(226, 136, 169, 0.5) 30%,    /* 서서히 핑크색 번짐 */
-    rgba(226, 136, 169, 1) 50%,      /* 🌟 정중앙 (두 사진의 칼같이 잘린 경계선 위치) 완전 핑크로 차단 */
-    rgba(226, 136, 169, 0.5) 70%,    /* 다시 서서히 투명해짐 */
-    rgba(226, 136, 169, 0) 100%      /* 맨 아래 (2번 사진 쪽) 완전 투명 */
+    rgba(226, 136, 169, 0) 0%,       /* 맨 위 (1번 사진 중간) 완전 투명 */
+    rgba(226, 136, 169, 0.4) 40%,    /* 서서히 핑크빛 투명 */
+    rgba(226, 136, 169, 0.8) 70%,    /* 경계선 직전 진해짐 */
+    rgba(226, 136, 169, 1) 100%      /* 맨 아래 (2번 사진과 만나는 칼날 경계선) 100% 핑크로 덮음 */
   ) !important;
 }
 
