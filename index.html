@@ -210,8 +210,17 @@
 
     <!-- 지도가 출력되는 반응형 상자 -->
 <div class="location__map animate-item" data-animate="fade-up" style="margin: 20px 0; width: 100%;">
-  <div style="width: 100%; max-width: 480px; margin: 0 auto; border: 1px solid #eee; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-    
+  <!-- [수정] 그림자 제거, 2D 핫핑크 울퉁불퉁(보로노이 테두리) 효과 적용 -->
+  <div style="
+    width: 100%; 
+    max-width: 480px; 
+    margin: 0 auto; 
+    border: 4px solid #FF5E97; 
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; 
+    overflow: hidden; 
+    box-shadow: none !important; 
+    box-sizing: border-box;
+  ">
     <!-- 지도가 실제로 그려질 사각형 영역 -->
     <div id="map" style="width:100%; height:300px;"></div>
 
