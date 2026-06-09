@@ -1433,33 +1433,47 @@ a {
   color: var(--color-pink-dark);
 }
 
+/* [수정] 공유 버튼과 완벽하게 크기 및 폰트 싱크 맞춤 */
 .btn--kakao {
-  background: var(--color-kakao);
-  color: #3a1d1d;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-full);
-  font-weight: 700;
-  border: none;
+  flex: 1 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  background: var(--color-kakao) !important;
+  color: #3a1d1d !important;
+  padding: 14px 0 !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif !important;
 }
 
-.btn--kakao:hover {
+.btn--naver {
+  flex: 1 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  background: var(--color-naver) !important;
+  color: var(--color-white) !important;
+  padding: 14px 0 !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif !important;
+}
+
+/* 마우스 오버 시 미세한 움직임 유지 */
+.btn--kakao:hover, .btn--naver:hover {
   filter: brightness(0.95);
   transform: translateY(-1px);
 }
 
-.btn--naver {
-  background: var(--color-naver);
-  color: var(--color-white);
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-full);
-  font-weight: 700;
-  border: none;
-}
-
-.btn--naver:hover {
-  filter: brightness(0.9);
-  transform: translateY(-1px);
-}
 
 /* ═══════════════════════════════════════════
    푸터
