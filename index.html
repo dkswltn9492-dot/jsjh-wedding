@@ -315,102 +315,84 @@
 <!-- 우측 하단에 고정될 음악 버튼 -->
 <button id="bgm-btn" class="bgm-playing">🎵</button>
 
-<!-- 2. 기존 스크립트 파일 연결 (태그는 바로 닫기) -->
+<!-- 메인 스크립트 -->
 <script src="./script.js"></script>
-<!-- 1. 카카오 지도 API 엔진 (비동기 안전 모드 적용 완료) -->
+
+<!-- 카카오 지도 SDK -->
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e2e652054178b417950b0402f65ebdca&autoload=false"></script>
-
-<!-- ✅ 카카오 공유 SDK -->
+<!-- 카카오 공유 SDK -->
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" crossorigin="anonymous"></script>
-
-<!-- 3. 기능 구현 통합 자바스크립트 -->
 <script>
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // 카카오 지도 초기화 (autoload=false 방식)
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  kakao.maps.load(function() {
-    var container = document.getElementById('map');
-    if (container) {
-      var hotelCoords = new kakao.maps.LatLng(37.2535, 127.0725);
-      var options = { center: hotelCoords, level: 3 };
-      var map = new kakao.maps.Map(container, options);
-      var marker = new kakao.maps.Marker({ position: hotelCoords, map: map });
-      var iwContent = '<div style="padding:7px; text-align:center; font-family:sans-serif; font-size:13px; font-weight:bold; color:#333; width:150px;">더마레보 호텔&웨딩</div>';
-      var infowindow = new kakao.maps.InfoWindow({ position: hotelCoords, content: iwContent });
-      infowindow.open(map, marker);
-    }
-  });
-
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // 카카오톡 공유 초기화
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if (typeof Kakao !== 'undefined' && !Kakao.isInitialized()) {
-    Kakao.init('e2e652054178b417950b0402f65ebdca');
-  }
-
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // 카카오톡 공유 버튼
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  var kakaoShareBtn = document.getElementById('kakao-share-btn');
-  if (kakaoShareBtn) {
-    kakaoShareBtn.addEventListener('click', function() {
-      // ⬇️ 실제 배포 URL로 교체하세요 (예: https://yourname.github.io)
-      var pageUrl = https://dkswltn9492-dot.github.io;
-      Kakao.Share.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: CONFIG.meta.title,
-          description: CONFIG.meta.description,
-          imageUrl: pageUrl + 'images/og/1.jpg',
-          link: { mobileWebUrl: pageUrl, webUrl: pageUrl }
-        },
-        buttons: [{
-          title: '모바일 청첩장 보기',
-          link: { mobileWebUrl: pageUrl, webUrl: pageUrl }
-        }]
-      });
-    });
-  }
-
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // URL 링크 복사 버튼
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  var urlCopyBtn = document.getElementById('urlCopyBtn');
-  if (urlCopyBtn) {
-    urlCopyBtn.addEventListener('click', function() {
-      var currentUrl = window.location.href;
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(currentUrl)
-          .then(function() { showToastMsg('청첩장 링크가 복사되었습니다 🎉'); })
-          .catch(function() { fallbackCopy(currentUrl); });
-      } else {
-        fallbackCopy(currentUrl);
-      }
-    });
-  }
-
-  function fallbackCopy(text) {
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.cssText = 'position:fixed;opacity:0;left:-9999px';
-    document.body.appendChild(ta);
-    ta.focus(); ta.select();
-    try { document.execCommand('copy'); showToastMsg('청첩장 링크가 복사되었습니다 🎉'); }
-    catch(e) { alert('주소창의 주소를 직접 복사해 주세요.'); }
-    document.body.removeChild(ta);
-  }
-
-  // script.js 내 showToast 호출 (전역 브릿지)
+  // 토스트 메시지 표시
   function showToastMsg(msg) {
     var toast = document.getElementById('toast');
     if (toast) {
       toast.textContent = msg;
       toast.classList.add('is-visible');
-      setTimeout(function(){ toast.classList.remove('is-visible'); }, 2500);
-    } else {
-      alert(msg);
+      setTimeout(function() { toast.classList.remove('is-visible'); }, 2500);
     }
   }
+
+  // 복사 폴백 (구형 브라우저)
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;opacity:0;left:-9999px';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToastMsg('청첩장 링크가 복사되었습니다!');
+    } catch(e) {
+      alert('주소창 주소를 직접 복사해 주세요.');
+    }
+    document.body.removeChild(ta);
+  }
+
+  // 카카오 지도 초기화
+  kakao.maps.load(function() {
+    var container = document.getElementById('map');
+    if (!container) return;
+    var hotelCoords = new kakao.maps.LatLng(37.2535, 127.0725);
+    var map = new kakao.maps.Map(container, { center: hotelCoords, level: 3 });
+    var marker = new kakao.maps.Marker({ position: hotelCoords, map: map });
+    var iwContent = '<div style="padding:7px;text-align:center;font-size:13px;font-weight:bold;color:#333;width:150px;">더마레보 호텔&웨딩</div>';
+    var infowindow = new kakao.maps.InfoWindow({ position: hotelCoords, content: iwContent });
+    infowindow.open(map, marker);
+  });
+
+  // 카카오 공유 SDK 초기화
+  if (typeof Kakao !== 'undefined' && !Kakao.isInitialized()) {
+    Kakao.init('e2e652054178b417950b0402f65ebdca');
+  }
+
+  // 카카오톡 공유 버튼
+  document.getElementById('kakao-share-btn').addEventListener('click', function() {
+    var pageUrl = window.location.href;
+    Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: CONFIG.meta.title,
+        description: CONFIG.meta.description,
+        imageUrl: pageUrl + 'images/og/1.jpg',
+        link: { mobileWebUrl: pageUrl, webUrl: pageUrl }
+      },
+      buttons: [{ title: '모바일 청첩장 보기', link: { mobileWebUrl: pageUrl, webUrl: pageUrl } }]
+    });
+  });
+
+  // URL 복사 버튼
+  document.getElementById('urlCopyBtn').addEventListener('click', function() {
+    var currentUrl = window.location.href;
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(currentUrl)
+        .then(function() { showToastMsg('청첩장 링크가 복사되었습니다!'); })
+        .catch(function() { fallbackCopy(currentUrl); });
+    } else {
+      fallbackCopy(currentUrl);
+    }
+  });
 </script>
 </body>
 </html>
