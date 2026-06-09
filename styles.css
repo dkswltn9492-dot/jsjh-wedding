@@ -853,7 +853,7 @@ a {
   background: transparent !important; 
   padding: 0 !important;        
   box-shadow: none !important; 
-  margin-bottom: 100px !important;
+  margin-bottom: 50px !important;
 }
 /* PC 전용 레이아웃 보정 (가로폭 768px 이상) */
 @media (min-width: 768px) {
