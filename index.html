@@ -151,7 +151,7 @@
 	<img src="images/secon.jpg" alt="2부 안내" >
 	
 	<!-- ─── 오시는 길 ─── -->
-<section class="section location" id="location" style="font-family: 'Pretendard', -apple-system, sans-serif;>
+<section class="section location" id="location" style="font-family: 'Pretendard', -apple-system, sans-serif;">
   <div class="section__inner">  
     <div class="location__card animate-item" data-animate="fade-up">
       <p class="location__venue" id="locationVenue"></p>
@@ -282,8 +282,6 @@
 </footer>
   </main>
 
-  <script src="script.js"></script>
-  
   <div style="display: none;">
   <div id="greetingTitle"></div>
   <div id="greetingContent"></div>
@@ -320,110 +318,98 @@
 <!-- 2. 기존 스크립트 파일 연결 (태그는 바로 닫기) -->
 <script src="./script.js"></script>
 <!-- 1. 카카오 지도 API 엔진 (비동기 안전 모드 적용 완료) -->
-<script src="https://kakao.com"></script>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e2e652054178b417950b0402f65ebdca&autoload=false"></script>
 
-<!-- 2. 카카오톡 공유 기능 SDK 라이브러리 -->
-<script src="https://kakaocdn.net" integrity="sha384-0rrO9CwST0wqejuuS6715aX3dZuHXWzNXC5fa74Yum96AMUR3459xLi6dHz848W5" crossorigin="anonymous"></script>
+<!-- ✅ 카카오 공유 SDK -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" crossorigin="anonymous"></script>
 
 <!-- 3. 기능 구현 통합 자바스크립트 -->
 <script>
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // [독립 실행 1] 카카오톡 공유 초기화 및 버튼 이벤트 (즉시 실행으로 먹통 방지)
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if (typeof Kakao !== 'undefined') {
-      if (!Kakao.isInitialized()) {
-          Kakao.init('e2e652054178b417950b0402f65ebdca');
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // 카카오 지도 초기화 (autoload=false 방식)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  kakao.maps.load(function() {
+    var container = document.getElementById('map');
+    if (container) {
+      var hotelCoords = new kakao.maps.LatLng(37.2535, 127.0725);
+      var options = { center: hotelCoords, level: 3 };
+      var map = new kakao.maps.Map(container, options);
+      var marker = new kakao.maps.Marker({ position: hotelCoords, map: map });
+      var iwContent = '<div style="padding:7px; text-align:center; font-family:sans-serif; font-size:13px; font-weight:bold; color:#333; width:150px;">더마레보 호텔&웨딩</div>';
+      var infowindow = new kakao.maps.InfoWindow({ position: hotelCoords, content: iwContent });
+      infowindow.open(map, marker);
+    }
+  });
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // 카카오톡 공유 초기화
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if (typeof Kakao !== 'undefined' && !Kakao.isInitialized()) {
+    Kakao.init('e2e652054178b417950b0402f65ebdca');
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // 카카오톡 공유 버튼
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  var kakaoShareBtn = document.getElementById('kakao-share-btn');
+  if (kakaoShareBtn) {
+    kakaoShareBtn.addEventListener('click', function() {
+      // ⬇️ 실제 배포 URL로 교체하세요 (예: https://yourname.github.io)
+      var pageUrl = https://dkswltn9492-dot.github.io;
+      Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: CONFIG.meta.title,
+          description: CONFIG.meta.description,
+          imageUrl: pageUrl + 'images/og/1.jpg',
+          link: { mobileWebUrl: pageUrl, webUrl: pageUrl }
+        },
+        buttons: [{
+          title: '모바일 청첩장 보기',
+          link: { mobileWebUrl: pageUrl, webUrl: pageUrl }
+        }]
+      });
+    });
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // URL 링크 복사 버튼
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  var urlCopyBtn = document.getElementById('urlCopyBtn');
+  if (urlCopyBtn) {
+    urlCopyBtn.addEventListener('click', function() {
+      var currentUrl = window.location.href;
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(currentUrl)
+          .then(function() { showToastMsg('청첩장 링크가 복사되었습니다 🎉'); })
+          .catch(function() { fallbackCopy(currentUrl); });
+      } else {
+        fallbackCopy(currentUrl);
       }
+    });
   }
 
-  // 카카오톡 공유 버튼 기능
-  const kakaoBtn = document.getElementById('kakao-share-btn');
-  if (kakaoBtn) {
-      kakaoBtn.addEventListener('click', function(event) {
-          event.preventDefault(); 
-          Kakao.Share.sendDefault({
-              objectType: 'feed',
-              content: {
-                  title: '저희 결혼합니다 💖',
-                  description: '축복의 자리에 오셔서 자리를 빛내주세요.',
-                  imageUrl: 'https://github.io',
-                  link: {
-                      mobileWebUrl: 'https://github.io', 
-                      webUrl: 'https://github.io',
-                  },
-              },
-              buttons: [
-                  {
-                      title: '모바일 청첩장 보기',
-                      link: {
-                          mobileWebUrl: 'https://github.io',
-                          webUrl: 'https://github.io',
-                      },
-                  },
-              ],
-          });
-      });
-  }
-
-  // URL 링크 복사 버튼 기능
-  const urlBtn = document.getElementById('urlCopyBtn');
-  if (urlBtn) {
-      urlBtn.addEventListener('click', function(event) {
-          event.preventDefault();
-          const currentUrl = 'https://github.io';
-
-          if (navigator.clipboard && window.isSecureContext) {
-              navigator.clipboard.writeText(currentUrl)
-                  .then(() => alert("청첩장 링크가 복사되었습니다! 🎉"))
-                  .catch(() => fallbackCopy(currentUrl));
-          } else {
-              fallbackCopy(currentUrl);
-          }
-      });
-  }
-
-
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // [독립 실행 2] 카카오 지도 전용 안전 로딩 시스템 (정석 방식)
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if (typeof kakao !== 'undefined' && kakao.maps) {
-      kakao.maps.load(function() {
-          var container = document.getElementById('map');
-          if (container) {
-              var hotelCoords = new kakao.maps.LatLng(37.2535, 127.0725); 
-              var options = {
-                  center: hotelCoords,
-                  level: 3
-              };
-
-              // 지도 및 마커 생성
-              var map = new kakao.maps.Map(container, options);
-              var marker = new kakao.maps.Marker({ position: hotelCoords, map: map });
-
-              // 식장 이름 말풍선 설정
-              var iwContent = '<div style="padding:7px; text-align:center; font-family:sans-serif; font-size:13px; font-weight:bold; color:#333; width:150px;">더마레보 호텔&웨딩</div>';
-              var infowindow = new kakao.maps.InfoWindow({ position: hotelCoords, content: iwContent });
-              infowindow.open(map, marker);
-          }
-      });
-  }
-
-
-  // 구형 환경 대응용 백업 복사 기능
   function fallbackCopy(text) {
-      const textArea = document.createElement("textarea");
-      textArea.value = text;
-      textArea.style.position = "fixed";  
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      try {
-          document.execCommand('copy');
-          alert("청첩장 링크가 복사되었습니다! 🎉");
-      } catch (err) {
-          alert("링크 복사에 실패했습니다. 주소창의 주소를 직접 복사해 주세요.");
-      }
-      document.body.removeChild(textArea);
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;opacity:0;left:-9999px';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { document.execCommand('copy'); showToastMsg('청첩장 링크가 복사되었습니다 🎉'); }
+    catch(e) { alert('주소창의 주소를 직접 복사해 주세요.'); }
+    document.body.removeChild(ta);
+  }
+
+  // script.js 내 showToast 호출 (전역 브릿지)
+  function showToastMsg(msg) {
+    var toast = document.getElementById('toast');
+    if (toast) {
+      toast.textContent = msg;
+      toast.classList.add('is-visible');
+      setTimeout(function(){ toast.classList.remove('is-visible'); }, 2500);
+    } else {
+      alert(msg);
+    }
   }
 </script>
 </body>
