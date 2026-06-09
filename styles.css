@@ -1707,23 +1707,22 @@ a {
 }
 
 .image-fade-horizontal {
-  width: 100% !important;
-  height: 100% !important; /* 💡 부모 상자(이미지 크기)에 맞게 꽉 채움 */
-  position: absolute !important; /* 이미지 위에 겹치도록 절대 위치 설정 */
-  top: 0 !important;
-  left: 0 !important;
-  z-index: 5 !important;
-  pointer-events: none !important; /* 터치 및 마우스 드래그 방해 금지 */
+   width: 100% !important;
+  height: 120px !important;       /* 💡 버무려지는 상하 범위 (더 넓게 퍼지게 하려면 숫자를 키우세요) */
+  margin-top: -60px !important;   /* 1번 사진 밑부분에 절반 겹치게 강제로 위로 올림 */
+  margin-bottom: -60px !important;/* 2번 사진 윗부분에 절반 겹치게 강제로 아래로 내림 */
+  position: relative !important;   /* 순서대로 쌓이는 흐름을 방해하지 않음 */
+  z-index: 5 !important;          /* 두 사진보다 무조건 위로 올라타게 설정 */
+  pointer-events: none !important;/* 터치나 스크롤 방해 금지 */
   
-  /* 현재 배경색인 #E288A9를 활용하여 양옆으로 부드럽게 투명해지는 안개 효과 */
+  /* 위아래는 투명하고, 정중앙만 핑크색인 샌드위치 그라데이션 */
   background: linear-gradient(
-    to right,
-    rgba(226, 136, 169, 1) 0%,       /* 왼쪽 끝은 완전 원래 배경색 */
-    rgba(226, 136, 169, 0.5) 20%,    /* 안쪽으로 오면서 투명해짐 */
-    rgba(226, 136, 169, 0) 40%,      /* 정중앙 왼쪽은 완전 투명 (사진 노출) */
-    rgba(226, 136, 169, 0) 60%,      /* 정중앙 오른쪽도 완전 투명 (사진 노출) */
-    rgba(226, 136, 169, 0.5) 80%,    /* 다시 오른쪽으로 가면서 흐려짐 */
-    rgba(226, 136, 169, 1) 100%      /* 오른쪽 끝은 완전 원래 배경색 */
+    to bottom,
+    rgba(226, 136, 169, 0) 0%,       /* 맨 위 (1번 사진 쪽) 완전 투명 */
+    rgba(226, 136, 169, 0.5) 30%,    /* 서서히 핑크색 번짐 */
+    rgba(226, 136, 169, 1) 50%,      /* 🌟 정중앙 (두 사진의 칼같이 잘린 경계선 위치) 완전 핑크로 차단 */
+    rgba(226, 136, 169, 0.5) 70%,    /* 다시 서서히 투명해짐 */
+    rgba(226, 136, 169, 0) 100%      /* 맨 아래 (2번 사진 쪽) 완전 투명 */
   ) !important;
 }
 
