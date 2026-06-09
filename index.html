@@ -382,24 +382,24 @@
     Kakao.init('e2e652054178b417950b0402f65ebdca');
   }
 
-  // 카카오톡 공유 버튼
+ // 카카오톡 공유 버튼 (커스텀 템플릿 ID: 134169)
   document.getElementById('kakao-share-btn').addEventListener('click', function() {
     var pageUrl = window.location.href;
-    Kakao.Share.sendDefault({
-      objectType: 'feed',
-      content: {
+    Kakao.Share.sendCustom({
+      templateId: 134169,
+      templateArgs: {
+        // 템플릿에서 변수로 지정한 키 이름과 맞춰서 넣으세요
+        // 예: 카카오 디벨로퍼 템플릿 편집 화면에서 ${URL} 이라고 적었으면 URL: pageUrl
         title: CONFIG.meta.title,
         description: CONFIG.meta.description,
-        imageUrl: pageUrl + 'images/og/1.jpg',
-        link: { mobileWebUrl: pageUrl, webUrl: pageUrl }
-      },
-      buttons: [{ title: '모바일 청첩장 보기', link: { mobileWebUrl: pageUrl, webUrl: pageUrl } }]
+        link_url: pageUrl
+      }
     });
   });
 
   // URL 복사 버튼
   document.getElementById('urlCopyBtn').addEventListener('click', function() {
-    var currentUrl = window.location.href+ 'index.html';
+    var currentUrl = window.location.href;
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(currentUrl)
         .then(function() { showToastMsg('청첩장 링크가 복사되었습니다!'); })
