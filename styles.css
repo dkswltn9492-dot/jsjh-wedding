@@ -1706,11 +1706,11 @@ a {
   ) !important;
 }
 
-.image-fade-horizontal {
+.image-fade-Pink {
    width: 100% !important;
   height: 100px !important;       /* 버무려지는 안개 상하 두께 */
-  margin-top: -100px !important;  /* [수정] 박스 전체를 1번 사진 아래쪽에 완벽히 오버랩 */
-  margin-bottom: 0px !important;  /* [수정] 아래쪽 밀어 올리던 마이너스 마진 제거 (사이드 번짐 차단) */
+  margin-top: -50px !important;  /* [수정] 박스 전체를 1번 사진 아래쪽에 완벽히 오버랩 */
+  margin-bottom: 50px !important;  /* [수정] 아래쪽 밀어 올리던 마이너스 마진 제거 (사이드 번짐 차단) */
   position: relative !important;   
   z-index: 5 !important;          
   pointer-events: none !important;
@@ -1719,9 +1719,32 @@ a {
   background: linear-gradient(
     to bottom,
     rgba(226, 136, 169, 0) 0%,       /* 맨 위 (1번 사진 중간) 완전 투명 */
-    rgba(226, 136, 169, 0.4) 40%,    /* 서서히 핑크빛 투명 */
-    rgba(226, 136, 169, 0.8) 70%,    /* 경계선 직전 진해짐 */
+    rgba(226, 136, 169, 0.5) 40%,    /* 서서히 핑크빛 투명 */
     rgba(226, 136, 169, 1) 100%      /* 맨 아래 (2번 사진과 만나는 칼날 경계선) 100% 핑크로 덮음 */
+	rgba(226, 136, 169, 0.5) 70%,    /* 경계선 직전 진해짐 */
+	rgba(226, 136, 169, 0) 0%,       /* 맨 위 (1번 사진 중간) 완전 투명 */
+  ) !important;
+}
+
+.image-fade-babyPink {
+   width: 100% !important;
+  height: 100px !important;       /* 버무려지는 안개 상하 두께 */
+  margin-top: -50px !important;  /* [수정] 박스 전체를 1번 사진 아래쪽에 완벽히 오버랩 */
+  margin-bottom: 50px !important;  /* [수정] 아래쪽 밀어 올리던 마이너스 마진 제거 (사이드 번짐 차단) */
+  position: relative !important;   
+  z-index: 5 !important;          
+  pointer-events: none !important;
+  
+  /* [수정] 1번 사진 끝에서부터 2번 사진 시작점까지 아래로 자연스럽게 스며드는 그라데이션 */
+  background: linear-gradient(
+    to bottom,
+    rgba(252, 190, 211, 0) 0%,         /* 맨 위 (1번 사진 중간) 완전 투명 */
+    rgba(252, 190, 211, 0.5) 40%,      /* 서서히 핑크빛 투명 */
+    rgba(252, 190, 211, 0.5) 70%,      /* 경계선 직전 진해짐 */
+    rgba(252, 190, 211, 1) 100%     
+	rgba(252, 190, 211, 0.5) 70%,      /* 서서히 핑크빛 투명 */
+    rgba(252, 190, 211, 0.5) 40%,      /* 경계선 직전 진해짐 */
+	rgba(252, 190, 211, 0) 0%,         /* 맨 위 (1번 사진 중간) 완전 투명 */
   ) !important;
 }
 
