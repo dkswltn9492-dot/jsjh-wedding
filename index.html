@@ -384,17 +384,9 @@
 
  // 카카오톡 공유 버튼
   document.getElementById('kakao-share-btn').addEventListener('click', function() {
-    var pageUrl = window.location.href;
-    Kakao.Share.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: CONFIG.meta.title,
-        description: CONFIG.meta.description,
-        imageUrl: pageUrl + 'images/og/1.jpg',
-        link: { mobileWebUrl: pageUrl, webUrl: pageUrl }
-      },
-      buttons: [{ title: '모바일 청첩장 보기', link: { mobileWebUrl: pageUrl, webUrl: pageUrl } }]
-    });
+    Kakao.Share.sendCustom({
+    templateId: 134169 // 카카오 디벨로퍼에서 확인한 템플릿 ID 숫자
+  });
   });
 
   // URL 복사 버튼
