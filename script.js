@@ -469,16 +469,12 @@
     modalIndex = index;
     showModalImage();
     $('#photoModal').classList.add('is-open');
-    document.body.classList.add('no-scroll');
+    //document.body.classList.add('no-scroll');
   }
 
   function closePhotoModal() {
     $('#photoModal').classList.remove('is-open');
-    document.body.classList.remove('no-scroll');
-
-	  if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
+    //document.body.classList.remove('no-scroll');
   }
 
   function showModalImage() {
