@@ -1707,11 +1707,12 @@ a {
 }
 
 .image-fade-Pink {
-   width: 100% !important;
-  height: 100px !important;       /* 버무려지는 안개 상하 두께 */
-  margin-top: -50px !important;  /* [수정] 박스 전체를 1번 사진 아래쪽에 완벽히 오버랩 */
-  margin-bottom: 50px !important;  /* [수정] 아래쪽 밀어 올리던 마이너스 마진 제거 (사이드 번짐 차단) */
-  position: relative !important;   
+   display: block !important;
+  width: 100% !important;
+  height: 100px !important;     
+  position: absolute !important;   
+  left: 0 !important;  
+  margin-top: -50px !important;  
   z-index: 5 !important;          
   pointer-events: none !important;
   
@@ -1727,11 +1728,12 @@ a {
 }
 
 .image-fade-babyPink {
-   width: 100% !important;
-  height: 100px !important;       /* 버무려지는 안개 상하 두께 */
-  margin-top: -50px !important;  /* [수정] 박스 전체를 1번 사진 아래쪽에 완벽히 오버랩 */
-  margin-bottom: 50px !important;  /* [수정] 아래쪽 밀어 올리던 마이너스 마진 제거 (사이드 번짐 차단) */
-  position: relative !important;   
+    display: block !important;
+  width: 100% !important;
+  height: 100px !important;     
+  position: absolute !important;   
+  left: 0 !important;  
+  margin-top: -50px !important;  
   z-index: 5 !important;          
   pointer-events: none !important;
   
