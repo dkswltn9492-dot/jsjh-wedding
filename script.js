@@ -36,7 +36,7 @@
      이미지 자동 감지
      ═══════════════════════════════════════════ */
 
-  function loadImagesFromFolder(folder, maxAttempts = 50) {
+  function loadImagesFromFolder(folder, maxAttempts = 20) {
     return new Promise(resolve => {
         const images = [];
         let current = 1;
