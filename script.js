@@ -475,6 +475,10 @@
   function closePhotoModal() {
     $('#photoModal').classList.remove('is-open');
     document.body.classList.remove('no-scroll');
+
+	  if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
   }
 
   function showModalImage() {
@@ -495,7 +499,11 @@
   }
 
   function initPhotoModal() {
-    $('#modalClose').addEventListener('click', closePhotoModal);
+    $('#modalClose').addEventListener('click', (e) => {
+      e.preventDefault(); 
+      closePhotoModal();
+    });
+    
     $('#modalPrev').addEventListener('click', () => modalNavigate(-1));
     $('#modalNext').addEventListener('click', () => modalNavigate(1));
 
